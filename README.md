@@ -112,3 +112,45 @@ Los paquetes del toolchain de Angular (\`esbuild\`, \`@parcel/watcher\`, \`lmdb\
 - **TypeScript** — lenguaje
 
 > Mantené las dependencias instaladas siempre con \`pnpm\`. Si ves un \`package-lock.json\` o \`yarn.lock\` aparecer, borralo: significa que alguien usó el gestor equivocado.
+
+---
+
+## Arquitectura de carpetas
+
+Organizamos por **features** (secciones de la app). Regla mental para saber dónde va un archivo: *¿lo usa una sola parte de la app, o varias?* Una sola → va dentro de esa feature. Varias → va en `shared`.
+src/
+├── app/
+│   ├── core/                 # Existe UNA vez en toda la app
+│   │   ├── services/         # Servicios globales (auth, api)
+│   │   ├── guards/           # Protección de rutas (ej: requiere login)
+│   │   └── models/           # Interfaces y tipos compartidos
+│   │
+│   ├── features/             # Cada sección grande = una carpeta
+│   │   ├── auth/             # Login con Google
+│   │   │   └── login/
+│   │   └── visor/            # Visor 360° con Marzipano
+│   │       └── visor-panorama/
+│   │
+│   ├── shared/               # Se REUSA en varias features
+│   │   └── components/       # Botones, spinners, headers reutilizables
+│   │
+│   ├── app.ts                # Componente raíz
+│   ├── app.config.ts         # Providers y configuración
+│   └── app.routes.ts         # Rutas
+│
+└── environments/             # Config por entorno (URL de API, cloud name)
+├── environment.ts
+└── environment.development.ts
+
+(`public/panoramas/` queda en la raíz del proyecto, fuera de `src/`.)
+
+### Convenciones
+
+- **Nombres de archivos:** kebab-case (`visor-panorama.component.ts`).
+- **Idioma:** español para nombres propios del dominio (`usuario`, `escena`). Elegir uno y respetarlo, no mezclar.
+- **Generar componentes en su feature:** `ng generate component features/visor/nombre`.
+
+### Estado e imágenes
+
+- **Estado compartido:** por ahora con servicios + signals (el patrón nativo de Angular). Si el estado se vuelve complejo, recién ahí evaluamos una librería.
+- **Imágenes (Cloudinary):** en producción las panorámicas se sirven desde Cloudinary (CDN). La API devuelve las URLs y el front se las pasa al visor. En el prototipo se usan imágenes locales en `public/panoramas/`. **Las credenciales de subida de Cloudinary (API key/secret) van solo en el backend, nunca en el frontend ni en el repo.**
