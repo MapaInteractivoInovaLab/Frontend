@@ -1,4 +1,4 @@
-# FrontEnd
+# FrontEnd — cfp7 · Mapa interactivo · Innovalab
 
 Proyecto Angular 22. **El gestor de paquetes oficial de este repo es [pnpm](https://pnpm.io/) — no uses `npm` ni `yarn`.** Usar otro gestor genera lockfiles distintos y conflictos en el equipo.
 
@@ -10,84 +10,84 @@ Proyecto Angular 22. **El gestor de paquetes oficial de este repo es [pnpm](http
 
 Necesitás **Node.js 22.22.3 o superior** (o cualquier 24.x / 26.x). Verificá tu versión:
 
-\`\`\`bash
+```bash
 node -v
-\`\`\`
+```
 
 Si es menor, actualizá desde [nodejs.org](https://nodejs.org/) o, si usás [nvm-windows](https://github.com/coreybutler/nvm-windows/releases):
 
-\`\`\`bash
+```bash
 nvm install 24
 nvm use 24
-\`\`\`
+```
 
 ### pnpm
 
 pnpm se gestiona con **corepack** (viene incluido con Node). Habilitalo y fijá la versión del proyecto:
 
-\`\`\`bash
+```bash
 corepack enable
 corepack use pnpm@11.5.3
-\`\`\`
+```
 
 Verificá:
 
-\`\`\`bash
+```bash
 pnpm -v   # debería mostrar 11.5.3
-\`\`\`
+```
 
-> La versión de pnpm está fijada en el \`package.json\` (campo \`packageManager\`), así que todos usamos la misma.
+> La versión de pnpm está fijada en el `package.json` (campo `packageManager`), así que todos usamos la misma.
 
 ### Angular CLI (opcional)
 
-No es obligatorio instalarlo global, podés usar los comandos vía \`pnpm\`. Si lo querés global:
+No es obligatorio instalarlo global, podés usar los comandos vía `pnpm`. Si lo querés global:
 
-\`\`\`bash
+```bash
 pnpm install -g @angular/cli@22
-\`\`\`
+```
 
 ---
 
 ## 2. Levantar el proyecto (ya clonado)
 
-\`\`\`bash
+```bash
 git clone <url-del-repo>
 cd FrontEnd
 pnpm install
 pnpm start
-\`\`\`
+```
 
-\`pnpm start\` corre \`ng serve\` y levanta el server de desarrollo en **http://localhost:4200/**. Recarga automáticamente al guardar cambios.
+`pnpm start` corre `ng serve` y levanta el server de desarrollo en **http://localhost:4200/**. Recarga automáticamente al guardar cambios.
 
 ---
 
 ## 3. Notas importantes sobre pnpm 11
 
-pnpm 11 trae dos protecciones de seguridad activadas por defecto que pueden frenar la instalación. **Ya están resueltas en el archivo \`pnpm-workspace.yaml\` del repo**, así que normalmente no tenés que hacer nada. Las documentamos por si aparecen.
+pnpm 11 trae dos protecciones de seguridad activadas por defecto que pueden frenar la instalación. **Ya están resueltas en el archivo `pnpm-workspace.yaml` del repo**, así que normalmente no tenés que hacer nada. Las documentamos por si aparecen.
 
-### \`minimumReleaseAge\` (cuarentena de paquetes nuevos)
+### `minimumReleaseAge` (cuarentena de paquetes nuevos)
 
 pnpm 11 bloquea por defecto los paquetes publicados hace menos de 1 día (protección contra ataques de cadena de suministro). Si instalás una versión de Angular recién salida, puede dar:
 
-\`\`\`
+```
 ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION
-\`\`\`
+```
 
-En este repo está desactivado con \`minimumReleaseAge: 0\` en \`pnpm-workspace.yaml\`.
+En este repo está desactivado con `minimumReleaseAge: 0` en `pnpm-workspace.yaml`.
 
-### \`allowBuilds\` (scripts de instalación)
+### `allowBuilds` (scripts de instalación)
 
 pnpm 11 no ejecuta los scripts de build de las dependencias salvo que estén aprobados explícitamente. Si falta alguno, da:
 
-\`\`\`
+```
 ERR_PNPM_IGNORED_BUILDS
-\`\`\`
+```
 
-Los paquetes del toolchain de Angular (\`esbuild\`, \`@parcel/watcher\`, \`lmdb\`, \`msgpackr-extract\`) ya están aprobados en \`pnpm-workspace.yaml\`. Si después de instalar algo te aparece este error con un paquete nuevo:
+Los paquetes del toolchain de Angular (`esbuild`, `@parcel/watcher`, `lmdb`, `msgpackr-extract`) ya están aprobados en `pnpm-workspace.yaml`. Si después de instalar algo te aparece este error con un paquete nuevo:
 
-1. Revisá cuáles están bloqueados: \`pnpm ignored-builds\`
-2. Agregá el paquete bajo \`allowBuilds\` en \`pnpm-workspace.yaml\`
-3. Reconstruí: \`pnpm rebuild <nombre-del-paquete>\`
+1. Revisá cuáles están bloqueados: `pnpm ignored-builds`
+2. Agregá el paquete bajo `allowBuilds` en `pnpm-workspace.yaml`
+3. Reconstruí: `pnpm rebuild <nombre-del-paquete>`
 
 ---
 
@@ -95,13 +95,13 @@ Los paquetes del toolchain de Angular (\`esbuild\`, \`@parcel/watcher\`, \`lmdb\
 
 | Comando | Descripción |
 |---|---|
-| \`pnpm start\` | Levanta el server de desarrollo (\`ng serve\`) en localhost:4200 |
-| \`pnpm build\` | Compila el proyecto para producción |
-| \`pnpm test\` | Corre los tests |
-| \`ng generate component <nombre>\` | Genera un componente |
-| \`ng version\` | Muestra las versiones instaladas de Angular |
-| \`pnpm install <paquete>\` | Agrega una dependencia |
-| \`pnpm install -D <paquete>\` | Agrega una dependencia de desarrollo |
+| `pnpm start` | Levanta el server de desarrollo (`ng serve`) en localhost:4200 |
+| `pnpm build` | Compila el proyecto para producción |
+| `pnpm test` | Corre los tests |
+| `ng generate component <nombre>` | Genera un componente |
+| `ng version` | Muestra las versiones instaladas de Angular |
+| `pnpm install <paquete>` | Agrega una dependencia |
+| `pnpm install -D <paquete>` | Agrega una dependencia de desarrollo |
 
 ---
 
@@ -111,36 +111,39 @@ Los paquetes del toolchain de Angular (\`esbuild\`, \`@parcel/watcher\`, \`lmdb\
 - **pnpm 11.5.3** — gestor de paquetes
 - **TypeScript** — lenguaje
 
-> Mantené las dependencias instaladas siempre con \`pnpm\`. Si ves un \`package-lock.json\` o \`yarn.lock\` aparecer, borralo: significa que alguien usó el gestor equivocado.
+> Mantené las dependencias instaladas siempre con `pnpm`. Si ves un `package-lock.json` o `yarn.lock` aparecer, borralo: significa que alguien usó el gestor equivocado.
 
 ---
 
 ## Arquitectura de carpetas
 
 Organizamos por **features** (secciones de la app). Regla mental para saber dónde va un archivo: *¿lo usa una sola parte de la app, o varias?* Una sola → va dentro de esa feature. Varias → va en `shared`.
+
+```
 src/
 ├── app/
-│   ├── core/                 # Existe UNA vez en toda la app
-│   │   ├── services/         # Servicios globales (auth, api)
-│   │   ├── guards/           # Protección de rutas (ej: requiere login)
-│   │   └── models/           # Interfaces y tipos compartidos
+│   ├── core/                     # Existe UNA vez en toda la app
+│   │   ├── services/             # Servicios globales (auth, api)
+│   │   ├── guards/               # Protección de rutas (ej: requiere login)
+│   │   └── models/               # Interfaces y tipos compartidos
 │   │
-│   ├── features/             # Cada sección grande = una carpeta
-│   │   ├── auth/             # Login con Google
+│   ├── features/                 # Cada sección grande = una carpeta
+│   │   ├── auth/                 # Login con Google
 │   │   │   └── login/
-│   │   └── visor/            # Visor 360° con Marzipano
+│   │   └── visor/                # Visor 360° con Marzipano
 │   │       └── visor-panorama/
 │   │
-│   ├── shared/               # Se REUSA en varias features
-│   │   └── components/       # Botones, spinners, headers reutilizables
+│   ├── shared/                   # Se REUSA en varias features
+│   │   └── components/           # Botones, spinners, headers reutilizables
 │   │
-│   ├── app.ts                # Componente raíz
-│   ├── app.config.ts         # Providers y configuración
-│   └── app.routes.ts         # Rutas
+│   ├── app.ts                    # Componente raíz
+│   ├── app.config.ts             # Providers y configuración
+│   └── app.routes.ts             # Rutas
 │
-└── environments/             # Config por entorno (URL de API, cloud name)
-├── environment.ts
-└── environment.development.ts
+└── environments/                 # Config por entorno (URL de API, cloud name)
+    ├── environment.ts
+    └── environment.development.ts
+```
 
 (`public/panoramas/` queda en la raíz del proyecto, fuera de `src/`.)
 
