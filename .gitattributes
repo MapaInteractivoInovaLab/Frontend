@@ -1,0 +1,12 @@
+# Normaliza los finales de línea automáticamente
+* text=auto eol=lf
+
+# Archivos que siempre deben ser binarios (no tocar finales de línea)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
