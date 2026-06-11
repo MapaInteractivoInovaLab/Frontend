@@ -154,3 +154,9 @@ src/
 
 - **Estado compartido:** por ahora con servicios + signals (el patrón nativo de Angular). Si el estado se vuelve complejo, recién ahí evaluamos una librería.
 - **Imágenes (Cloudinary):** en producción las panorámicas se sirven desde Cloudinary (CDN). La API devuelve las URLs y el front se las pasa al visor. En el prototipo se usan imágenes locales en `public/panoramas/`. **Las credenciales de subida de Cloudinary (API key/secret) van solo en el backend, nunca en el frontend ni en el repo.**
+
+---
+
+## Finales de línea (.gitattributes)
+
+El repo incluye un archivo `.gitattributes` que normaliza los finales de línea a LF para todo el equipo, sin importar el sistema operativo. Esto evita que aparezcan cambios falsos en los diffs por diferencias entre Windows (CRLF) y Mac/Linux (LF). No hay que hacer nada: Git lo aplica solo. Las imágenes y fuentes están marcadas como binarias para que Git no las altere.
